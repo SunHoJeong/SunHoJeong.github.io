@@ -1,72 +1,59 @@
-/*global jQuery:false */
 (function ($) {
-
-
-	$(window).load(function(){
-      $("#navigation").sticky({ topSpacing: 0 });
+    
+    // Navigation scrolls
+    $('.navbar-nav li a').bind('click', function(event) {
+        $('.navbar-nav li').removeClass('active');
+        $(this).closest('li').addClass('active');
+        var $anchor = $(this);
+        var nav = $($anchor.attr('href'));
+        if (nav.length) {
+        $('html, body').stop().animate({				
+            scrollTop: $($anchor.attr('href')).offset().top				
+        }, 1500, 'easeInOutExpo');
+        
+        event.preventDefault();
+        }
     });
-	
+       
 
+    // Instantiate MixItUp:
+    $('#Container').mixItUp();
 
-	$('ul.nav li.dropdown').hover(function() {
-	  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-	}, function() {
-	  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-	});	
-
-	
-	//jQuery to collapse the navbar on scroll
-	$(window).scroll(function() {
-		if ($(".navbar").offset().top > 50) {
-			$(".navbar-fixed-top").addClass("top-nav-collapse");
-		} else {
-			$(".navbar-fixed-top").removeClass("top-nav-collapse");
-		}
-	});
-	
-	//jQuery for page scrolling feature - requires jQuery Easing plugin
-	$(function() {
-		$('.navbar-nav li a').bind('click', function(event) {
-			var $anchor = $(this);
-			var nav = $($anchor.attr('href'));
-			if (nav.length) {
-			$('html, body').stop().animate({				
-				scrollTop: $($anchor.attr('href')).offset().top				
-			}, 1500, 'easeInOutExpo');
-			
-			event.preventDefault();
-			}
-		});
-		$('a.totop,a#btn-scroll,a.btn-scroll,.carousel-inner .item a.btn').bind('click', function(event) {
-			var $anchor = $(this);
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top
-			}, 1500, 'easeInOutExpo');
-			event.preventDefault();
-		});
-	});
-
-	//nivo lightbox
-	$('.gallery-item a').nivoLightbox({
-		effect: 'fadeScale',                             // The effect to use when showing the lightbox
-		theme: 'default',                           // The lightbox theme to use
-		keyboardNav: true,                          // Enable/Disable keyboard navigation (left/right/escape)
-		clickOverlayToClose: true,                  // If false clicking the "close" button will be the only way to close the lightbox
-		onInit: function(){},                       // Callback when lightbox has loaded
-		beforeShowLightbox: function(){},           // Callback before the lightbox is shown
-		afterShowLightbox: function(lightbox){},    // Callback after the lightbox is shown
-		beforeHideLightbox: function(){},           // Callback before the lightbox is hidden
-		afterHideLightbox: function(){},            // Callback after the lightbox is hidden
-		onPrev: function(element){},                // Callback when the lightbox gallery goes to previous item
-		onNext: function(element){},                // Callback when the lightbox gallery goes to next item
-		errorMessage: 'The requested content cannot be loaded. Please try again later.' // Error message when content can't be loaded
-	});
-
-	jQuery('.appear').appear();
-	jQuery(".appear").on("appear", function(data) {
-			var id = $(this).attr("id");
-			jQuery('.nav li').removeClass('active');
-			jQuery(".nav a[href='#" + id + "']").parent().addClass("active");					
-		});
-	
+    // Team Slider
+    $('.autoplay').slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 2,
+        slidesToScroll: 3,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
+    });
+    
 })(jQuery);
