@@ -132,7 +132,11 @@
             <br>
             당신의 승리에 조금이라도 기여할 수 있는 B.G.M.이 되겠습니다<br>
             <a href="#service" class="btn btn-skin btn-scroll">자세히 알아보기</a>
-            <a href="https://youtu.be/2k6hXEZDyRY" class="btn btn-skin btn-scroll">데모영상</a>
+
+            <br><br><br>
+            <h2>데모영상</h2>
+
+            <video width="700" height="600" controls=""> <source src="img/bgm최종샘플영상.mp4?autoplay=0" type="video/mp4"> </video>
           </div>
         </div>
 
@@ -379,18 +383,23 @@
             </a>
             </div>
             <div class="col-md-3 animated fadeInUp slower">
+              <a href="img/works/3.jpg" title="멤버 찾기 화면입니다. 음성채팅 플랫폼인 디스코드 링크를 글 작성자와 댓글 작성자의 만남의 오작교로 사용합니다!" data-lightbox-gallery="gallery2" data-lightbox-hidpi="img/find_member_07.png">
+              <img src="img/find_member_07.png" class="img-responsive" alt="img">
+            </a>
+            </div>
+            <div class="col-md-3 animated fadeInUp slower">
               <a href="img/works/3.jpg" title="내가 작성한 글 목록을 볼 수 있어요" data-lightbox-gallery="gallery2" data-lightbox-hidpi="img/find_member_03.png">
               <img src="img/find_member_03.png" class="img-responsive" alt="img">
             </a>
             </div>
             <div class="col-md-3 animated fadeInUp">
-              <a href="img/works/4.jpg" title="신청 댓글을 남겨 간단하게 같이하기 신청을 해보세요" data-lightbox-gallery="gallery2" data-lightbox-hidpi="img/find_member_04.png">
-              <img src="img/find_member_04.png" class="img-responsive" alt="img">
+              <a href="img/works/5.jpg" title="내가 쓴 글에 같이하기 신청한 유저를 수락, 거절이 가능합니다" data-lightbox-gallery="gallery2" data-lightbox-hidpi="img/find_member_05.png">
+              <img src="img/find_member_05.png" class="img-responsive" alt="img">
             </a>
             </div>
             <div class="col-md-3 animated fadeInUp">
-              <a href="img/works/5.jpg" title="내가 쓴 글에 같이하기 신청한 유저를 수락, 거절이 가능합니다" data-lightbox-gallery="gallery2" data-lightbox-hidpi="img/find_member_05.png">
-              <img src="img/find_member_05.png" class="img-responsive" alt="img">
+              <a href="img/works/4.jpg" title="신청 댓글을 남겨 간단하게 같이하기 신청을 해보세요" data-lightbox-gallery="gallery2" data-lightbox-hidpi="img/find_member_04.png">
+              <img src="img/find_member_04.png" class="img-responsive" alt="img">
             </a>
             </div>
             <div class="col-md-3 animated fadeInUp">
@@ -518,6 +527,7 @@
             <div class="section-heading text-center">
               <h2 class="h-bold animated bounceInDown">사용기술</h2>
               <div class="divider-header"></div>
+
               <h2> PUBG TRACKER API</h2>
               배틀그라운드 유저의 전적 검색을 하기 위해서 API를 사용하였습니다. 사용자의 게임 데이터를 JSON 형식으로 넘겨줍니다.<br>
               게임 데이터를 배틀그라운드 제작사인 '블루홀'에서 직접 제공하는것이 아니여서 가끔 서버가 터지거나 느린 경우가 많았습니다.
@@ -540,7 +550,7 @@
               유투브 API를 사용한 만큼 UI도 유투브와 유사하게 꾸미고자 Draggable Panel을 사용하게 되었습니다.<br>
               <br>
 
-              <h2> STETHO & Firebase crach</h2>
+              <h2> STETHO & Firebase crash</h2>
               저는 API를 사용하기 위해 API key가 필요했습니다. key가 필요한 API들을 이용하는 과정에 있어서<br>
               서버와 안드로이드 간의 왕래하는 데이터를 확인하는것이 쉽지만은 않았습니다. 그래서 STETHO를 사용하게 되었습니다.<br>
               안드로이드에서 서버로 어떤 데이터가 전송되었고, 서버에서 안드로이드로 어떤 데이터가 전송되는지,<br>
@@ -558,7 +568,38 @@
 
               <h2> Kakao SDK</h2>
               별도의 회원가입 없이 사용자가 손쉽게 서비스를 이용할 수 있도록 카카오 간편 로그인을 사용했습니다.
+              <br><br><br><br><br><br>
+
+              <h2 class="h-bold animated bounceInDown">트러블슈팅 및 후기</h2>
+              <div class="divider-header"></div>
+              <h2>PUBG Tracker API</h2>
+              전적 검색은 유저의 전적 데이터를 api를 통해서 요청하고 제이슨의 형태로 넘겨받는 구조입니다.<br>
+              넘겨받은 제이슨 데이터 안에는 오브젝트 안에 이름이 같은 오브젝트가 존재했습니다.
+              <br>
+              --> 이를 해결하고자 SirealizedName 어노테이션을 이용해 명시적으로 컨버팅을 진행하였습니다.
               <br><br>
+
+              <h2>TransactionTooLargeException</h2>
+              전적 검색 결과 액티비티에서 api를 통해 받아온 데이터 객체를 뿌려주는 과정이 필요했습니다. <br>
+              4개의 탭, 2개의 프래그먼트를 사용했습니다. 탭에 해당되는 프래그먼트가 생성될 때 번들에 <br>
+              유저 전적 데이터를 넣어주어 setArguments() 메서드를 통해 프래그먼트로 데이터 객체를 <br>
+              넘기고자 하였습니다. 하지만 번들에 담은 데이터 객체의 크기가 너무 커서 TransactionTooLargeException이<br>
+              발생했습니다. 번들에 담을 수 있는 데이터 크기 제한 때문에 발생하는 예외였습니다.
+              <br>
+              --> 이를 해결하고자 액티비티에서 받아온 데이터를 디비에 저장하여 추후에 프래그먼트에서 디비를 통해<br>
+              참조하는 방식으로 바꾸었습니다.
+              <br><br>
+
+              <h2>Firebase Realtime-Database</h2>
+              개발초기 실시간 게시판을 구현하고자 실시간 데이터베이스라는 말만 듣고 게시판의 데이터베이스를 <br>
+              Firebase Realtime-Database로 결정하였습니다. 하지만 저의 생각과는 다르게 NoSQL이기 때문에<br>
+              사용 방식과 접근 방식에서 어려움이 따랐습니다. 한 예로, 데이터를 삭제하고자 하는데 해당 데이터의 인덱스를<br>
+              알 수가 없었습니다.<br>
+              --> 데이터를 저장하고 검색하고 삭제하는 과정에서 저장될 때, 생성되는 고유 key값을 이용하여 따로 인덱스를<br>
+              저장하고 있는 배열 생성 혹은 키와 데이터를 묶어서 저장함으로써 이러한 문제를 해결하였습니다.
+              <br><br>
+
+              <h2>모델의 구조</h2>
             </div>
           </div>
         </div>
